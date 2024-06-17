@@ -1,0 +1,14 @@
+#!/usr/bin/python
+
+"""
+    SW_Kviscosity
+"""
+
+
+from SW_Density import rhoSW
+from SW_Viscosity import dynamicViscosity
+
+def kinematicViscosity(T=20.0, S=0.0, units='cgs'):
+    rhosw, rhow = rhoSW(T, S)
+    mu = dynamicViscosity(T, S)
+    return mu / rhosw
