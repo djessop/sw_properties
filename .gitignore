@@ -1,2 +1,6 @@
 archive.zip
 __pycache__/
+__init__.py
+*.pyc
+*.py~
+
