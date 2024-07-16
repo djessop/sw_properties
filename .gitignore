@@ -1,6 +1,13 @@
 archive.zip
 __pycache__/
 __init__.py
-*.pyc
-*.py~
+SW_Density.py~
+SW_Density.pyc
+SW_Kviscosity.py~
+SW_Kviscosity.pyc
+SW_Viscosity.py~
+SW_Viscosity.pyc
+SW_Viscosity.py.orig
+SW_Properties.py~
+SW_Properties.pyc
 Untitled.ipynb
