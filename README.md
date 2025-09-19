@@ -3,7 +3,6 @@ Provides physical properties (density, viscosity, conductivity, ...) of sea/salt
 
 ## Provides:
 ```
-.
 ├── sw_density.py
 |   ├── rho_plain_water: density of plain water as a function of temperature
 |   ├── delta_rho: density increase due to salinity

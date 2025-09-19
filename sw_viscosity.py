@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
-from SW_Properties.SW_Utils import parse_units
-from SW_Properties.SW_Density import rho_sw, rho_plain
+from sw_properties.sw_utils import parse_units
+from sw_properties.sw_density import rho_sw, rho_plain
 
 
 def dynamic_viscosity(T, S=0.0, uT='C', uS='ppt', output_units='cgs'):

@@ -146,7 +146,7 @@ def rho_sw(T, S=0.0, uT='C', uS='ppt', output_units='cgs'):
 
     Note that the subfunctions use the fractional salinity, whereas the input 
     salinity is in ppt by default.  This is dealt with using the "parse_units"
-    routine from SW_Utils.  
+    routine from sw_utils.  
     """
     T, s = parse_units(T, S, uT, uS)  # Temp and salinity in °C and kg/kg
     rho_w  = rho_plain_water(T)
@@ -203,24 +203,48 @@ def drho_sw_ds(T, s=0.0):
     return ddelta_rho_ds(T, s)
 
 
+def target_salinity(S, target_density, T=20.):
+    """
+    Optimisation function for use in required_salinity
+    """
+    return rho_sw(T, S) - target_density
+
+
+def required_salinity(target_density, S=0., T=20.):
+    """
+    Returns an estimate of the required salinity to achieve target_density
+    using Newton's method (scipy.optimize.newton).  Uses 'cgs' units.
+
+    Parameters
+    ----------
+    target_density : float
+        The required density/[g/cm3]
+    S : float
+        An initial guess for salinity (optional).  Default is 0 g/kg
+    T : float
+        Temperature of the water (optional).  Default is 20°C.
+
+    See also
+    --------
+    target_salinity, rho_sw
+    """
+    from scipy.optimize import newton
+
+    salinity = newton(target_salinity, x0=S, args=(target_density,T))
+    print(f"Salinity for target density of {target_density} g/cm3: "
+          + f"{salinity:.4f} g/kg")
+    return salinity
+
+
 if __name__ == "__main__":
     import numpy as np
-
-    from scipy.optimize import newton, curve_fit, fsolve
+    import os, sys
     
-    
-    # BEGIN
-    T, S, uT, uS = 20, 30, 'C', 'ppt'  # temp in °C and salinity in g/kg
+    # Estimate salinity required to achieve user-defined density
+    T, S0 = 20, 30  # temp in °C and salinity in g/kg
 
-    rhow  = rho_plain(T, S)
-    rhosw = rho_sw(T, S)
+    target_density     = 1.01
+    if len(sys.argv) > 1:
+        target_density = float(sys.argv[1])
 
-
-    def target(S, x, T=20.):
-        return rho_sw(T, S) - x
-
-    
-    target_density  = 1.01
-    target_salinity = newton(target, x0=S, args=(target_density,T))
-    print(f"Salinity for target density of {target_density} g/cm3: "
-          + f"{target_salinity:.4f} g/kg")
+    salinity = required_salinity(target_density, S0, T)
