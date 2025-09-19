@@ -2,7 +2,7 @@
 Provides physical properties (density, viscosity, conductivity, ...) of sea/salt water.  Based on matlab files from http://web.mit.edu/seawater/
 
 ## Provides:
-```bash
+```
 .
 ├── sw_density.py
 |   ├── rho_plain_water: density of plain water as a function of temperature
