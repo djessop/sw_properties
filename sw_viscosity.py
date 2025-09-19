@@ -6,7 +6,7 @@ from SW_Properties.SW_Density import rho_sw, rho_plain
 
 def dynamic_viscosity(T, S=0.0, uT='C', uS='ppt', output_units='cgs'):
     """
-    SW_Viscosity    Dynamic viscosity of seawater
+    sw_viscosity    Dynamic viscosity of seawater
     =========================================================================
     USAGE:  mu = SW_Viscosity(T, uT, S, uS)
     

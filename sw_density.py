@@ -60,7 +60,7 @@
            substance, 1996. 
 """
 
-from SW_Properties.SW_Utils import parse_units
+from sw_properties.sw_utils import parse_units
 
 
 # Constants for the subfunctions
@@ -77,17 +77,20 @@ b = [8.0200240891E+02,
     -1.6132224742E-05]
 
 
-# Density of plain water
+
 def rho_plain_water(T):
     '''
+    Returns the density of plain water
+
     Temperature must be in deg C
     '''
     return a[0] + a[1]*T + a[2]*T**2 + a[3]*T**3 + a[4]*T**4
 
 
-# Density increase due to salinity
 def delta_rho(T, s=0.0):
     '''
+    Returns the density increase due to salinity
+    
     Temperature must be in deg C.  Salinity must be in kg / kg
     '''
     return (b[0]*s + b[1]*s*T + b[2]*s*T**2 + b[3]*s*T**3 
@@ -157,28 +160,46 @@ def rho_sw(T, S=0.0, uT='C', uS='ppt', output_units='cgs'):
 
 
 def drho_plain_water_dT(T):
+    """
+    Returns derivative of rho_plain_water wrt temperature
+    """
     return a[1] + 2*a[2]*T + 3*a[3]*T**2 + 4*a[4]*T**3
 
 
 def drho_plain_water_ds(T):
+    """
+    Returns derivative of rho_plain_water wrt salinity (i.e. zero)
+    """
     return 0.0
 
 
 def ddelta_rho_dT(T, s=0.0):
+    """
+    Returns derivative of delta_rho wrt temperature
+    """
     return (b[1]*s + 2*b[2]*s*T + 3*b[3]*s*T**2
         + 2*b[4]*s**2*T)
 
 
 def ddelta_rho_ds(T, s=0.0):
+    """
+    Returns derivative of delta_rho wrt salinity
+    """
     return (b[0] + b[1]*T + b[2]*T**2 + b[3]*T**3 
             + 2*b[4]*s*T**2)
 
 
 def drho_sw_dT(T, s=0.0):
+    """
+    Returns derivative of rho_sw wrt temperature
+    """
     return drho_plain_water_dT(T) + ddelta_rho_dT(T, s)
 
 
 def drho_sw_ds(T, s=0.0):  
+    """
+    Returns derivative of rho_sw wrt salinity
+    """
     return ddelta_rho_ds(T, s)
 
 
