@@ -14,16 +14,16 @@ Provides physical properties (density, viscosity, conductivity, ...) of sea/salt
 |   ├── ddelta_rho_dT: derivative of delta_rho wrt temperature
 |   ├── ddelta_rho_ds: derivative of delta_rho wrt salinity
 |   ├── drho_sw_dT: derivative of rho_sw wrt temperature
-|   ├── drho_sw_ds: derivative of rho_sw wrt salinity
+|   └── drho_sw_ds: derivative of rho_sw wrt salinity
 |
 ├── sw_kviscosity.py
-|   ├── kinematic_viscosity: kinematic viscosity of salt water
+|   └── kinematic_viscosity: kinematic viscosity of salt water
 |
 ├── sw_viscosity.py
-|   ├── dynamic_viscosity: dynamic viscosity of salt water
+|   └── dynamic_viscosity: dynamic viscosity of salt water
 |
 └── sw_utils.py
-    ├── parse_units: utility for providing compatible units 
+    └── parse_units: utility for providing compatible units 
 ```
 
 ## Usage:
