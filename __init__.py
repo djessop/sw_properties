@@ -6,6 +6,8 @@ from sw_properties.sw_density import (rho_plain_water, delta_rho,
                                       ddelta_rho_dT,
                                       ddelta_rho_ds,
                                       drho_sw_dT,
-                                      drho_sw_ds)
+                                      drho_sw_ds,
+                                      target_salinity,
+                                      required_salinity)
 from sw_properties.sw_kviscosity import kinematic_viscosity
 from sw_properties.sw_viscosity import dynamic_viscosity

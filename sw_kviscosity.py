@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 """
-    SW_Kviscosity
+    sw_kviscosity  kinematic viscosity of seawater
 """
 
 from sw_properties.sw_utils import parse_units

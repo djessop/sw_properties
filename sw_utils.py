@@ -5,6 +5,14 @@ def parse_units(T=20., S=0., uT='C', uS='ppt'):
 
     Also checks that the variables are within the tolerated range.
     '''
+    import numpy as np
+
+    # Check types, and parse as necessary
+    if isinstance(S, int):
+        S = float(S)
+    if isinstance(S, np.ndarray):
+        S = S.astype(float)
+
     # Temperature unit checks
     uT = uT.lower()
     if uT == 'c':
@@ -36,10 +44,11 @@ def parse_units(T=20., S=0., uT='C', uS='ppt'):
     uS = 'ppt'
 
     # Warnings for temperature or salinity out of range
-    assert ((0 <= T <= 180) and (0 <= S <= 150)), 'Temperature and/or ' \
-        + 'salinity are outside of accepted ranges: 0 <= T <= 180 degC, ' \
-        + '0 <= S <= 150 g/kg'
-
+    assert (np.logical_and(0 <= T, T <= 180).any() \
+            and np.logical_and(0 <= S, S <= 160).any()), \
+        'Temperature and/or salinity are outside of accepted ranges: ' \
+        '0 <= T <= 180 degC, 0 <= S <= 160 g/kg'
+        
     S /= 1000   # Following routines require S in [kg/kg]
 
     return T, S
