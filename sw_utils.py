@@ -46,8 +46,8 @@ def parse_units(T=20., S=0., uT='C', uS='ppt'):
     # Warnings for temperature or salinity out of range
     assert (np.logical_and(0 <= T, T <= 180).any() \
             and np.logical_and(0 <= S, S <= 160).any()), \
-        'Temperature and/or salinity are outside of accepted ranges: ' \
-        '0 <= T <= 180 degC, 0 <= S <= 160 g/kg'
+        f'Temperature ({T:.1f}) and/or salinity ({S:.1f}) are outside of ' \
+        'accepted ranges: 0 <= T <= 180 degC, 0 <= S <= 160 g/kg'
         
     S /= 1000   # Following routines require S in [kg/kg]
 
