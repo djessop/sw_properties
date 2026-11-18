@@ -15,9 +15,8 @@ print(f"Kinematic viscosity of water at {T:.1f} °C with salinity {S:.2f} g/kg: 
 
 By default, temperatures are given in degrees Celsius (°C), and salinity in units of g/kg (or ppt).  However, other units can be specified by using the `uT` and `uS` keywords
 
-| <td colspan=2> uT | | <td colspan=2> uS |
-|---|------------|---|------------|
-|arg| definition |arg| definition |
+
+|uT | definition |uS | definition |
 |---|------------|---|------------|
 |'C'| degrees Celsius | 'ppt' | parts per thousand, or g/kg |
 |'K'| Kelvin | 'ppm' | parts per million, or mg/kg |
