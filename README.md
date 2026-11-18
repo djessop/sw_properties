@@ -28,4 +28,20 @@ Provides physical properties (density, viscosity, conductivity, ...) of sea/salt
 ## Usage:
 ```python
 from sw_properties import rho_sw, kinematic_viscosity, dynamic_viscosity
+
+S = 20.5  # water salinity/[g/kg]
+T = 20.   # water temperature/[°C]
+
+rho = rho_sw(T, S)
+print(f"Density of water at {T:.1f} °C with salinity {S:.2f} g/kg: {rho:.3f} g/cm³")
+print(f"Kinematic viscosity of water at {T:.1f} °C with salinity {S:.2f} g/kg: {kinematic_viscosity(T, S):.3f} g/cm³")
 ```
+
+By default, temperatures are given in degrees Celsius (°C), and salinity in units of g/kg (or ppt).  However, other units can be specified by using the `uT` and `uS` keywords
+
+
+|uT | definition |  
+|'C'| degrees Celsius |
+|'K'| Kelvin |
+|'R'| Rankine |
+|'F'| Farenheit |
