@@ -10,7 +10,7 @@ T = 20.   # water temperature/[°C]
 
 rho = rho_sw(T, S)
 print(f"Density of water at {T:.1f} °C with salinity {S:.2f} g/kg: {rho:.3f} g/cm³")
-print(f"Kinematic viscosity of water at {T:.1f} °C with salinity {S:.2f} g/kg: {kinematic_viscosity(T, S, uT='K', uS='w'):.3f} cm²/s")
+print(f"Kinematic viscosity of water at {T:.1f} °C with salinity {S:.2f} g/kg: {kinematic_viscosity(T, S):.3f} cm²/s")
 ```
 
 By default, temperatures are given in degrees Celsius (°C), and salinity in units of g/kg (or ppt).  However, other units can be specified by using the `uT` and `uS` keywords
@@ -26,7 +26,7 @@ By default, temperatures are given in degrees Celsius (°C), and salinity in uni
 ```python
 S = 0.025  # kg/kg
 T = 293.15 # K
-print(f"Kinematic viscosity of water at {T:.1f} K with salinity {S:.3f} kg/kg: {kinematic_viscosity(T, S):.3f} cm²/s")
+print(f"Kinematic viscosity of water at {T:.1f} K with salinity {S:.3f} kg/kg: {kinematic_viscosity(T, S, uT='K', uS='w'):.3f} cm²/s")
 ```
 
 ## Provides:
