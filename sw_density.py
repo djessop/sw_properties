@@ -210,7 +210,7 @@ def target_salinity(S, target_density, T=20.):
     return rho_sw(T, S) - target_density
 
 
-def required_salinity(target_density, S=0., T=20.):
+def required_salinity(target_density, S=0., T=20., messg=False):
     """
     Returns an estimate of the required salinity to achieve target_density
     using Newton's method (scipy.optimize.newton).  Uses 'cgs' units.
@@ -223,6 +223,8 @@ def required_salinity(target_density, S=0., T=20.):
         An initial guess for salinity (optional).  Default is 0 g/kg
     T : float
         Temperature of the water (optional).  Default is 20°C.
+    messg : bool
+        Print message (optional).  Default is False
 
     See also
     --------
@@ -231,8 +233,9 @@ def required_salinity(target_density, S=0., T=20.):
     from scipy.optimize import newton
 
     salinity = newton(target_salinity, x0=S, args=(target_density,T))
-    print(f"Salinity for target density of {target_density} g/cm3: "
-          + f"{salinity:.4f} g/kg")
+    if messg:
+        print(f"Salinity for target density of {target_density} g/cm3: "
+              + f"{salinity:.3f} g/kg")
     return salinity
 
 

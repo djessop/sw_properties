@@ -13,8 +13,7 @@ print(f"Density of water at {T:.1f} °C with salinity {S:.2f} g/kg: {rho:.3f} g/
 print(f"Kinematic viscosity of water at {T:.1f} °C with salinity {S:.2f} g/kg: {kinematic_viscosity(T, S):.3f} cm²/s")
 ```
 
-By default, temperatures are given in degrees Celsius (°C), and salinity in units of g/kg (or ppt).  However, other units can be specified by using the `uT` and `uS` keywords
-
+By default, temperatures are given in degrees Celsius (°C), and salinity in units of g/kg (or ppt).  However, other units can be specified by using the `uT` and `uS` keywords:
 
 |uT | definition |uS | definition |
 |---|------------|---|------------|
@@ -27,6 +26,20 @@ By default, temperatures are given in degrees Celsius (°C), and salinity in uni
 S /= 1e3    # kg/kg
 T += 273.15 # K
 print(f"Kinematic viscosity of water at {T:.1f} K with salinity {S:.3f} kg/kg: {kinematic_viscosity(T, S, uT='K', uS='w'):.3f} cm²/s")
+```
+
+### Salinity required for given density
+
+Sometimes, we want to calculate the level of salinity necessary to achieve a target density.  The function `required_salinity` is provided to do this using Newton's method (`scipy.optimize.newton`) [note (2026-11-19): currently, the jacobian of density is not provided -- secant method]
+```python
+from sw_properties import required_salinity
+
+rho_target = 1.013  # the density we want to achieve
+rho_plain  = 0.998  # density of plain water
+T_plain    = 20.    # water temperature (optional, but recommended)
+S_guess    = 25.    # initial guess at salinity (optional)
+
+S_required = required_salinity(rho_target, S=S_guess, T=T_plain, messg=True)
 ```
 
 ## Provides:
