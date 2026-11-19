@@ -235,7 +235,7 @@ def required_salinity(target_density, S=0., T=20., messg=False):
     salinity = newton(target_salinity, x0=S, args=(target_density,T))
     if messg:
         print(f"Salinity for target density of {target_density} g/cm3: "
-              + f"{salinity:.3f} g/kg")
+              + f"{salinity:.3f} g/kg") 
     return salinity
 
 
